@@ -11,7 +11,7 @@ const Router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
-                path: "/detailPage",
+                path: "/supplier/:id",
                 element: <DetailPage />,
             }
 ]);
