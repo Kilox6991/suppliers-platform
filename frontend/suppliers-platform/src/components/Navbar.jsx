@@ -9,7 +9,7 @@ function Navbar() {
                 alt="logo-ct"
                 style={{width:"200px", height:"100px"}}
             />
-            <h2 style={{ color: "#c7c8c9", marginTop:"50px" }}>
+            <h2 style={{ color: "#67696c", marginTop:"50px" }}>
                 CT Suppliers Platform v1.02
             </h2>
         </Box>

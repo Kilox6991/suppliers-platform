@@ -1,12 +1,18 @@
+import { Box } from "@mui/material"
 import Navbar from "../components/Navbar"
-import Sidebar from "../components/SideBar"
+import Sidebar from "../components/Sidebar";
+import MenuHome from "../components/MenuHome";
+
+
 
 function HomePage() {
     return(
         <>
         <Navbar></Navbar>
+        <Box sx={{display:"flex"}}>
         <Sidebar></Sidebar>
-        <div>HomePage</div>
+        <MenuHome></MenuHome>
+        </Box>
         </>
     )
 }
