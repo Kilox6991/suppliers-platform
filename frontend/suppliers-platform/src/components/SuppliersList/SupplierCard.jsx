@@ -1,8 +1,12 @@
 import { Button, Typography, Box} from "@mui/material";
 import { Link } from "react-router-dom";
+import { useData } from "../../data/DataContext";
 
 function SupplierCard({ name, vat, date, country, id }) {
-console.log(name, vat, date, country, id)
+
+  const { suppliers } = useData();
+  console.log(suppliers)
+  
   return (
     <Box
       sx={{
