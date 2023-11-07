@@ -1,17 +1,6 @@
 {
   "suppliers": [
     {
-      "name": "Proveedor 15",
-      "commercialName": "Proveedor 1 Comercial",
-      "vat": "ES123456789A",
-      "legalAddress": "Calle Betis",
-      "city": "Sevilla",
-      "state": "EspañaState",
-      "country": "España",
-      "zipCode": "41520",
-      "id": 1
-    },
-    {
       "name": "Proveedor 20",
       "commercialName": "Proveedor 2 Comercial",
       "vat": "DE987654321B",
@@ -45,15 +34,15 @@
       "id": 4
     },
     {
-      "name": "Proveedor 50",
-      "commercialName": "Proveedor 5 Comercial",
-      "vat": "UK789123456E",
-      "legalAddress": "123 Main St",
-      "city": "London",
-      "state": "UKState",
-      "country": "Reino Unido",
-      "zipCode": "SW1A 1AA",
-      "id": 5
+      "name": "Manuel",
+      "commercialName": "Romero Arroyo",
+      "legalAddress": "Virgen Del Sagrado Corazon",
+      "city": "Sevilla",
+      "state": "Sevilla",
+      "country": "España",
+      "ZipCode": "41010",
+      "vat": "3920852395720A",
+      "id": 6
     }
   ]
 }
