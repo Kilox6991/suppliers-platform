@@ -5,13 +5,14 @@ import MenuHome from "../components/MenuHome";
 
 
 
+
 function HomePage() {
-  
+    
     return(
         <>
         <Navbar></Navbar>
         <Box sx={{display:"flex"}}>
-        <Sidebar></Sidebar>
+        <Sidebar ></Sidebar>
         <MenuHome ></MenuHome>
         </Box>
         </>

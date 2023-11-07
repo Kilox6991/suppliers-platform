@@ -1,7 +1,7 @@
 {
     "suppliers": [{
             "id": 1,
-            "name": "Proveedor 3",
+            "name": "Proveedor 1",
             "vat": "FR654321789C",
             "date": "2023-03-25",
             "commercialName": "Proveedor 3 Comercial",
@@ -13,7 +13,7 @@
         },
         {
             "id": 2,
-            "name": "Proveedor 3",
+            "name": "Proveedor 2",
             "vat": "FR654321789C",
             "date": "2023-03-25",
             "commercialName": "Proveedor 3 Comercial",
@@ -37,7 +37,7 @@
         },
         {
             "id": 4,
-            "name": "Proveedor 3",
+            "name": "Proveedor 4",
             "vat": "FR654321789C",
             "date": "2023-03-25",
             "commercialName": "Proveedor 3 Comercial",
