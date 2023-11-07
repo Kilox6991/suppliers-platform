@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import { Box } from "@mui/material"
 import Sidebar from "../components/Sidebar"
 import SupplierDetail from "../components/SupplierDetail/SupplierDetail"
+import MenuDetail from "../components/MenuDetail"
 
 function DetailPage() {
     return (
@@ -9,7 +10,7 @@ function DetailPage() {
         <Navbar></Navbar>
         <Box sx={{display:"flex"}}>
         <Sidebar></Sidebar>
-        <SupplierDetail></SupplierDetail>
+        <MenuDetail></MenuDetail>       
         </Box>
         </>
     )
