@@ -1,6 +1,6 @@
 import SupplierList from "./SuppliersList/SupplierList"
 
-function MenuHome({ data, onDelete }) {
+function MenuHome() {
   
     
     return (

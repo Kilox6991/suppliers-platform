@@ -1,10 +1,8 @@
-import { Button, Typography, Box } from "@mui/material";
+import { Button, Typography, Box} from "@mui/material";
 import { Link } from "react-router-dom";
 
-function SupplierCard({ id, name, vat, date, country }) {
-  
-  
-
+function SupplierCard({ name, vat, date, country, id }) {
+console.log(name, vat, date, country, id)
   return (
     <Box
       sx={{
