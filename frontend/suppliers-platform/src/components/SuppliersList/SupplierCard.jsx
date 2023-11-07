@@ -1,58 +1,87 @@
-import { Button, Typography, Box} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Button, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useData } from "../../data/DataContext";
+import { helpHttp } from "../../helpers/helpHttp";
 
-function SupplierCard({ name, vat, date, country, id }) {
+function SupplierCard() {
+  const { suppliers : inicialSuppliers } = useData();
+  const [suppliers, setSuppliers] = useState([]);
 
-  const { suppliers } = useData();
-  console.log(suppliers)
-  
+  const api = helpHttp();
+
+  useEffect(() => {
+    setSuppliers(inicialSuppliers);
+  }, [inicialSuppliers]);
+
+  const handleDelete = async (id) => {
+    const url = `http://localhost:5000/suppliers/${id}`;
+    const options = {
+      method: "DELETE",
+    };
+    try {
+      const data = await api.del(url, options);
+      console.log("Recurso eliminado con éxito:", data);
+      setSuppliers(suppliers.filter(supplier => supplier.id !== id));
+    } catch (error) {
+      console.error("Error al eliminar el recurso:", error);
+    }
+  };
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <Link to={`/supplier/${id}`} style={{ textDecoration: "none" }}>
-        <Button
+    <div>
+      {suppliers.map((supplier) => (
+        <Box
+          key={supplier.id}
           sx={{
             display: "flex",
-            gap: "50px",
-            backgroundColor: "#eaeaea",
-            width: "700px",
-            height: "80px",
-            border: "1px solid black",
-            borderRadius: "2px",
-            padding: "0px 20px",
-            marginBottom: "20px",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Typography>{name}</Typography>
-          <Typography>{vat}</Typography>
-          <Typography>{date}</Typography>
-          <Typography>{country}</Typography>
-        </Button>
-      </Link>
-      <Button >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-          />
-        </svg>
-      </Button>
-    </Box>
+          <Link
+            to={`/supplier/${supplier.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              sx={{
+                display: "flex",
+                gap: "50px",
+                backgroundColor: "#eaeaea",
+                width: "700px",
+                height: "80px",
+                border: "1px solid black",
+                borderRadius: "2px",
+                padding: "0px 20px",
+                marginBottom: "20px",
+              }}
+            >
+              <Typography>{supplier.name}</Typography>
+              <Typography>{supplier.vat}</Typography>
+              <Typography>{supplier.date}</Typography>
+              <Typography>{supplier.country}</Typography>
+            </Button>
+          </Link>
+          <Button onClick={() => handleDelete(supplier.id)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+              />
+            </svg>
+          </Button>
+        </Box>
+      ))}
+    </div>
   );
 }
 
