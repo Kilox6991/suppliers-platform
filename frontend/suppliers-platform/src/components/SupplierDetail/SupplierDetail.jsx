@@ -1,10 +1,13 @@
 import { Box, Typography, TextField, Button, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { suppliers } from "../../data/json";
+
 import { helpHttp } from "../../helpers/helpHttp";
+import { useData } from "../../data/DataContext";
+
 
 function SupplierDetail() {
+  const { suppliers, setSuppliers } = useData();
   const { id } = useParams();
   const api = helpHttp();
   const selectedSupplier = suppliers.find(
@@ -56,6 +59,7 @@ function SupplierDetail() {
       setEditedState(data.state);
       setEditedCountry(data.country);
       setEditedZip(data.zipCode);
+      setSuppliers(suppliers.map(supplier => supplier.id === Number(id) ? data : supplier))
     } catch (error) {
       console.error("Error al actualizar el proveedor:", error);
     }
