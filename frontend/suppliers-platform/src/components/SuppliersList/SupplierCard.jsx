@@ -1,36 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useData } from "../../data/DataContext";
-import { helpHttp } from "../../helpers/helpHttp";
 
-function SupplierCard() {
-  const { suppliers : inicialSuppliers } = useData();
-  const [suppliers, setSuppliers] = useState([]);
-
-  const api = helpHttp();
-
-  useEffect(() => {
-    setSuppliers(inicialSuppliers);
-  }, [inicialSuppliers]);
-
-  const handleDelete = async (id) => {
-    const url = `http://localhost:5000/suppliers/${id}`;
-    const options = {
-      method: "DELETE",
-    };
-    try {
-      const data = await api.del(url, options);
-      console.log("Recurso eliminado con éxito:", data);
-      setSuppliers(suppliers.filter(supplier => supplier.id !== id));
-    } catch (error) {
-      console.error("Error al eliminar el recurso:", error);
-    }
-  };
+function SupplierCard({ supplier, updateSuppliersList, handleDelete }) {
 
   return (
     <div>
-      {suppliers.map((supplier) => (
+     
         <Box
           key={supplier.id}
           sx={{
@@ -80,7 +56,6 @@ function SupplierCard() {
             </svg>
           </Button>
         </Box>
-      ))}
     </div>
   );
 }

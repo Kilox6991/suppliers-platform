@@ -1,14 +1,32 @@
-import React, { useState } from "react";
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import SupplierCard from "./SupplierCard";
 import { useData } from "../../data/DataContext";
 import { helpHttp } from "../../helpers/helpHttp";
 
 function SupplierList() {
-  const { suppliers, setSuppliers } = useData();
-  const api = helpHttp();
+  const { suppliers: inicialSuppliers } = useData();
+  const [suppliers, setSuppliers] = useState([]);
   const [open, setOpen] = useState(false);
   const [newSupplier, setNewSupplier] = useState({});
+
+  const api = helpHttp();
+
+  useEffect(() => {
+    setSuppliers(inicialSuppliers);
+  }, [inicialSuppliers]);
+
+  const updateSuppliersList = (newSuppliers) => {
+    setSuppliers(newSuppliers);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,7 +45,8 @@ function SupplierList() {
 
   const addSupplier = async () => {
     const url = `http://localhost:5000/suppliers`;
-    const lastSupplierId = suppliers[suppliers.length - 1]?.id || 0;
+    const lastSupplierId =
+      inicialSuppliers[inicialSuppliers.length - 1]?.id || 0;
     const newSupplierWithId = { ...newSupplier, id: lastSupplierId + 1 };
     const options = {
       body: newSupplierWithId,
@@ -37,29 +56,90 @@ function SupplierList() {
     try {
       const data = await api.post(url, options);
       console.log("Proveedor añadido con éxito:", data);
-      setSuppliers(prevSuppliers => [...prevSuppliers, data]);
+      setSuppliers((prevSuppliers) => [...prevSuppliers, newSupplierWithId]);
       handleClose();
     } catch (error) {
       console.error("Error al añadir el proveedor:", error);
     }
   };
 
+  const handleDelete = async (id) => {
+    const url = `http://localhost:5000/suppliers/${id}`;
+    const options = {
+      method: "DELETE",
+    };
+    try {
+      const data = await api.del(url, options);
+      console.log("Recurso eliminado con éxito:", data);
+      updateSuppliersList(suppliers.filter((supplier) => supplier.id !== id));
+    } catch (error) {
+      console.error("Error al eliminar el recurso:", error);
+    }
+  };
+
   return (
     <Box sx={{ marginTop: "50px", marginLeft: "100px" }}>
       <Button sx={{ marginBottom: "20px" }}>Supplier List V1</Button>
-      <Button sx={{ marginBottom: "20px", marginLeft:"400px" }} onClick={handleOpen}>New Supplier</Button>
-      <SupplierCard/>
+      <Button
+        sx={{ marginBottom: "20px", marginLeft: "400px" }}
+        onClick={handleOpen}
+      >
+        New Supplier
+      </Button>
+      {suppliers.map((supplier) => (
+        <SupplierCard
+          key={supplier.id}
+          supplier={supplier}
+          updateSuppliersList={updateSuppliersList}
+          handleDelete={handleDelete}
+        />
+      ))}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Supplier</DialogTitle>
         <DialogContent>
-          <TextField name="name" label="Name" onChange={handleChange} fullWidth />
-          <TextField name="commercialName" label="Commercial Name" onChange={handleChange} fullWidth />
+          <TextField
+            name="name"
+            label="Name"
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            name="commercialName"
+            label="Commercial Name"
+            onChange={handleChange}
+            fullWidth
+          />
           <TextField name="vat" label="VAT" onChange={handleChange} fullWidth />
-          <TextField name="legalAddress" label="Legal Address" onChange={handleChange} fullWidth />
-          <TextField name="city" label="City" onChange={handleChange} fullWidth />
-          <TextField name="state" label="State" onChange={handleChange} fullWidth />
-          <TextField name="country" label="Country" onChange={handleChange} fullWidth />
-          <TextField name="ZipCode" label="Zip Code" onChange={handleChange} fullWidth />
+          <TextField
+            name="legalAddress"
+            label="Legal Address"
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            name="city"
+            label="City"
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            name="state"
+            label="State"
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            name="country"
+            label="Country"
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            name="ZipCode"
+            label="Zip Code"
+            onChange={handleChange}
+            fullWidth
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
