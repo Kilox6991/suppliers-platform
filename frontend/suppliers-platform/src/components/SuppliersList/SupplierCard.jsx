@@ -24,6 +24,7 @@ function SupplierCard({ supplier, updateSuppliersList, handleDelete }) {
               sx={{
                 display: "flex",
                 gap: "50px",
+                justifyContent: "space-between",
                 backgroundColor: "#eaeaea",
                 width: "700px",
                 height: "80px",
@@ -33,10 +34,10 @@ function SupplierCard({ supplier, updateSuppliersList, handleDelete }) {
                 marginBottom: "20px",
               }}
             >
-              <Typography>{supplier.name}</Typography>
-              <Typography>{supplier.vat}</Typography>
-              <Typography>{supplier.date}</Typography>
-              <Typography>{supplier.country}</Typography>
+              <Typography sx={{color:"black"}}>{supplier.name}</Typography>
+              <Typography sx={{color:"black"}}>{supplier.vat}</Typography>
+              <Typography sx={{color:"black"}}>{supplier.date}</Typography>
+              <Typography sx={{color:"black"}}>{supplier.country}</Typography>
             </Button>
           </Link>
           <Button onClick={() => handleDelete(supplier.id)}>
@@ -47,6 +48,9 @@ function SupplierCard({ supplier, updateSuppliersList, handleDelete }) {
               strokeWidth={1.5}
               stroke="currentColor"
               className="w-6 h-6"
+              width={40}
+              height={40}
+              color="grey"
             >
               <path
                 strokeLinecap="round"

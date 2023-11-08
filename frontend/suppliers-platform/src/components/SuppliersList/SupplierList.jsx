@@ -6,7 +6,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Table,
   TextField,
+  Typography,
 } from "@mui/material";
 import SupplierCard from "./SupplierCard";
 import { useData } from "../../data/DataContext";
@@ -79,13 +81,16 @@ function SupplierList() {
 
   return (
     <Box sx={{ marginTop: "50px", marginLeft: "100px" }}>
-      <Button sx={{ marginBottom: "20px" }}>Supplier List V1</Button>
+      <Typography sx={{ marginBottom: "20px", textDecoration:"none"}}>Supplier List V1</Typography>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+      <Typography sx={{ textDecoration:"none" }}>There are {suppliers.length} suppliers</Typography>
       <Button
-        sx={{ marginBottom: "20px", marginLeft: "400px" }}
+        sx={{ marginBottom: "20px", marginRight: "50px", color:"black" }}
         onClick={handleOpen}
       >
         New Supplier
       </Button>
+      </Box>
       {suppliers.map((supplier) => (
         <SupplierCard
           key={supplier.id}
@@ -96,7 +101,7 @@ function SupplierList() {
       ))}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Supplier</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{display:"flex",flexDirection:"column",gap:"10px", width:"500px"}}>
           <TextField
             name="name"
             label="Name"
@@ -142,11 +147,11 @@ function SupplierList() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={addSupplier}>Add</Button>
+          <Button onClick={handleClose} sx={{color:"black"}}>Cancel</Button>
+          <Button onClick={addSupplier} sx={{color:"black"}}>Add</Button>
         </DialogActions>
       </Dialog>
-    </Box>
+    </Box>  
   );
 }
 

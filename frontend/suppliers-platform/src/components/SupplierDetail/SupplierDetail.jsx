@@ -172,7 +172,7 @@ function SupplierDetail() {
           />
         </Grid>
       </Grid>
-      <Button onClick={saveChanges}>Guardar Cambios</Button>
+      <Button onClick={saveChanges} sx={{color:"black", marginTop:"10px"}}>Guardar Cambios</Button>
     </Box>
   );
 }
