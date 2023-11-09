@@ -4,33 +4,71 @@ import { useState } from "react";
 
 import { helpHttp } from "../../helpers/helpHttp";
 import { useData } from "../../data/DataContext";
-
+import { useEffect } from "react";
 
 function SupplierDetail() {
-  const { suppliers, setSuppliers } = useData();
+  const [selectedSupplier, setSelectedSupplier] = useState(null);
   const { id } = useParams();
   const api = helpHttp();
-  const selectedSupplier = suppliers.find(
-    (supplier) => supplier.id === Number(id)
-  );
+  const { suppliers, setSuppliers } = useData();
 
+
+ 
+  useEffect(() => {
+    const fetchSupplier = async () => {
+      const url = `http://localhost:5000/suppliers/${id}`;
+      try {
+        const data = await api.get(url);
+        if (data) {
+          setSelectedSupplier(data);
+          setEditedName(data.name);
+          setEditedNameCommercial(data.commercialName);
+          setEditedVat(data.vat);
+          setEditedLegalAddress(data.legalAddress);
+          setEditedCity(data.city);
+          setEditedState(data.state);
+          setEditedCountry(data.country);
+          setEditedZip(data.zipCode);
+        }
+      } catch (error) {
+        console.error("Error al obtener el proveedor:", error);
+      }
+    };
+  
+    fetchSupplier();
+  }, [id]);
+
+  const [editedName, setEditedName] = useState("");
+  const [editedNameCommercial, setEditedNameCommercial] = useState("");
+  const [editedVat, setEditedVat] = useState("");
+  const [editedLegalAddress, setEditedLegalAddress] = useState("");
+  const [editedCity, setEditedCity] = useState("");
+  const [editedState, setEditedState] = useState("");
+  const [editedCountry, setEditedCountry] = useState("");
+  const [editedZip, setEditedZip] = useState("");
+
+  useEffect(() => {
+    const foundSupplier = suppliers.find(
+      (supplier) => String(supplier.id) === id
+    );
+    setSelectedSupplier(foundSupplier);
+  
+    if (foundSupplier) {
+      setEditedName(foundSupplier.name);
+      setEditedNameCommercial(foundSupplier.commercialName);
+      setEditedVat(foundSupplier.vat);
+      setEditedLegalAddress(foundSupplier.legalAddress);
+      setEditedCity(foundSupplier.city);
+      setEditedState(foundSupplier.state);
+      setEditedCountry(foundSupplier.country);
+      setEditedZip(foundSupplier.zipCode);
+    }
+  }, [suppliers, id]);
+
+  
   if (!selectedSupplier) {
     return <div>Proveedor no encontrado</div>;
   }
-
-  const [editedName, setEditedName] = useState(selectedSupplier.name);
-  const [editedNameCommercial, setEditedNameCommercial] = useState(
-    selectedSupplier.commercialName
-  );
-  const [editedVat, setEditedVat] = useState(selectedSupplier.vat);
-
-  const [editedLegalAddress, setEditedLegalAddress] = useState(
-    selectedSupplier.legalAddress
-  );
-  const [editedCity, setEditedCity] = useState(selectedSupplier.city);
-  const [editedState, setEditedState] = useState(selectedSupplier.state);
-  const [editedCountry, setEditedCountry] = useState(selectedSupplier.country);
-  const [editedZip, setEditedZip] = useState(selectedSupplier.zipCode);
 
   const saveChanges = async () => {
     const url = `http://localhost:5000/suppliers/${id}`;
@@ -59,7 +97,11 @@ function SupplierDetail() {
       setEditedState(data.state);
       setEditedCountry(data.country);
       setEditedZip(data.zipCode);
-      setSuppliers(suppliers.map(supplier => supplier.id === Number(id) ? data : supplier))
+      setSuppliers((prevSuppliers) =>
+        prevSuppliers.map((supplier) =>
+          supplier.id === Number(id) ? data : supplier
+        )
+      );
     } catch (error) {
       console.error("Error al actualizar el proveedor:", error);
     }
@@ -172,7 +214,9 @@ function SupplierDetail() {
           />
         </Grid>
       </Grid>
-      <Button onClick={saveChanges} sx={{color:"black", marginTop:"10px"}}>Guardar Cambios</Button>
+      <Button onClick={saveChanges} sx={{ color: "black", marginTop: "10px" }}>
+        Guardar Cambios
+      </Button>
     </Box>
   );
 }

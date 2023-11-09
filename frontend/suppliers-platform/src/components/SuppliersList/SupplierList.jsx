@@ -15,11 +15,10 @@ import { useData } from "../../data/DataContext";
 import { helpHttp } from "../../helpers/helpHttp";
 
 function SupplierList() {
-  const { suppliers: inicialSuppliers } = useData();
+  const { suppliers: inicialSuppliers, setNewlyAddedSupplier } = useData();
   const [suppliers, setSuppliers] = useState([]);
   const [open, setOpen] = useState(false);
   const [newSupplier, setNewSupplier] = useState({});
-
   const api = helpHttp();
 
   useEffect(() => {
@@ -45,10 +44,9 @@ function SupplierList() {
     });
   };
 
-  const addSupplier = async () => {
+  const addSupplierAndUpdateList = async () => {
     const url = `http://localhost:5000/suppliers`;
-    const lastSupplierId =
-      inicialSuppliers[inicialSuppliers.length - 1]?.id || 0;
+    const lastSupplierId = suppliers[suppliers.length - 1]?.id || 0;
     const newSupplierWithId = { ...newSupplier, id: lastSupplierId + 1 };
     const options = {
       body: newSupplierWithId,
@@ -56,14 +54,16 @@ function SupplierList() {
     };
     setOpen(false);
     try {
-      const data = await api.post(url, options);
-      console.log("Proveedor añadido con éxito:", data);
-      setSuppliers((prevSuppliers) => [...prevSuppliers, newSupplierWithId]);
+      await api.post(url, options);
+      setSuppliers([...suppliers, newSupplierWithId]);
+      setNewlyAddedSupplier(newSupplierWithId);
+      console.log("Recurso creado con éxito:", newSupplierWithId)
       handleClose();
     } catch (error) {
       console.error("Error al añadir el proveedor:", error);
     }
   };
+  
 
   const handleDelete = async (id) => {
     const url = `http://localhost:5000/suppliers/${id}`;
@@ -80,30 +80,64 @@ function SupplierList() {
   };
 
   return (
-    <Box sx={{ marginTop: "50px", marginLeft: "100px", color: "#333", fontFamily: "Arial" }}>
-    <Typography sx={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Supplier List</Typography>
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
-      <Typography sx={{ fontSize: "18px" }}>There are {suppliers.length} suppliers</Typography>
-      <Button
-        sx={{ marginBottom: "20px", marginRight: "50px", backgroundColor: "#007BFF", color: "#fff", padding: "10px 20px","&:hover": {
-          backgroundColor: "#A1CEEB",
-        } }}
-        onClick={handleOpen}
+    <Box
+      sx={{
+        marginTop: "50px",
+        marginLeft: "100px",
+        color: "#333",
+        fontFamily: "Arial",
+      }}
+    >
+      <Typography
+        sx={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}
       >
-        New Supplier
-      </Button>
-    </Box>
-    {suppliers.map((supplier) => (
-      <SupplierCard
-        key={supplier.id}
-        supplier={supplier}
-        updateSuppliersList={updateSuppliersList}
-        handleDelete={handleDelete}
-      />
-    ))}
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Add New Supplier</DialogTitle>
-      <DialogContent sx={{display:"flex",flexDirection:"column",gap:"10px", width:"500px"}}>
+        Supplier List
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}
+      >
+        <Typography sx={{ fontSize: "18px" }}>
+          There are {suppliers.length} suppliers
+        </Typography>
+        <Button
+          sx={{
+            marginBottom: "20px",
+            marginRight: "50px",
+            backgroundColor: "#007BFF",
+            color: "#fff",
+            padding: "10px 20px",
+            "&:hover": {
+              backgroundColor: "#A1CEEB",
+            },
+          }}
+          onClick={handleOpen}
+        >
+          New Supplier
+        </Button>
+      </Box>
+      {suppliers.map((supplier) => (
+        <SupplierCard
+          key={supplier.id}
+          supplier={supplier}
+          updateSuppliersList={updateSuppliersList}
+          handleDelete={handleDelete}
+        />
+      ))}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Add New Supplier</DialogTitle>
+        <DialogContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            width: "500px",
+          }}
+        >
           <TextField
             name="name"
             label="Name"
@@ -149,11 +183,15 @@ function SupplierList() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} sx={{color:"black"}}>Cancel</Button>
-          <Button onClick={addSupplier} sx={{color:"black"}}>Add</Button>
+          <Button onClick={handleClose} sx={{ color: "black" }}>
+            Cancel
+          </Button>
+          <Button onClick={addSupplierAndUpdateList} sx={{ color: "black" }}>
+            Add
+          </Button>
         </DialogActions>
       </Dialog>
-    </Box>  
+    </Box>
   );
 }
 
