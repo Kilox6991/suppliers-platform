@@ -80,28 +80,30 @@ function SupplierList() {
   };
 
   return (
-    <Box sx={{ marginTop: "50px", marginLeft: "100px" }}>
-      <Typography sx={{ marginBottom: "20px", textDecoration:"none"}}>Supplier List V1</Typography>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
-      <Typography sx={{ textDecoration:"none" }}>There are {suppliers.length} suppliers</Typography>
+    <Box sx={{ marginTop: "50px", marginLeft: "100px", color: "#333", fontFamily: "Arial" }}>
+    <Typography sx={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Supplier List</Typography>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+      <Typography sx={{ fontSize: "18px" }}>There are {suppliers.length} suppliers</Typography>
       <Button
-        sx={{ marginBottom: "20px", marginRight: "50px", color:"black" }}
+        sx={{ marginBottom: "20px", marginRight: "50px", backgroundColor: "#007BFF", color: "#fff", padding: "10px 20px","&:hover": {
+          backgroundColor: "#A1CEEB",
+        } }}
         onClick={handleOpen}
       >
         New Supplier
       </Button>
-      </Box>
-      {suppliers.map((supplier) => (
-        <SupplierCard
-          key={supplier.id}
-          supplier={supplier}
-          updateSuppliersList={updateSuppliersList}
-          handleDelete={handleDelete}
-        />
-      ))}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Supplier</DialogTitle>
-        <DialogContent sx={{display:"flex",flexDirection:"column",gap:"10px", width:"500px"}}>
+    </Box>
+    {suppliers.map((supplier) => (
+      <SupplierCard
+        key={supplier.id}
+        supplier={supplier}
+        updateSuppliersList={updateSuppliersList}
+        handleDelete={handleDelete}
+      />
+    ))}
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>Add New Supplier</DialogTitle>
+      <DialogContent sx={{display:"flex",flexDirection:"column",gap:"10px", width:"500px"}}>
           <TextField
             name="name"
             label="Name"
@@ -140,7 +142,7 @@ function SupplierList() {
             fullWidth
           />
           <TextField
-            name="ZipCode"
+            name="zipCode"
             label="Zip Code"
             onChange={handleChange}
             fullWidth

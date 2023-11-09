@@ -40,7 +40,7 @@ function SupplierCard({ supplier, updateSuppliersList, handleDelete }) {
               <Typography sx={{color:"black"}}>{supplier.country}</Typography>
             </Button>
           </Link>
-          <Button onClick={() => handleDelete(supplier.id)}>
+          <Button onClick={() => handleDelete(supplier.id)} sx={{marginBottom:"20px"}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
