@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, Grid, CircularProgress } from "@mui/material";
+import { Box, Typography, TextField, Button, Grid, CircularProgress, Paper} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -110,6 +110,8 @@ function SupplierDetail() {
 
   return (
     <Box
+    component={Paper}
+    elevation={15}
       sx={{
         backgroundColor: "#eaeaea",
         margin: "100px",
@@ -215,7 +217,12 @@ function SupplierDetail() {
           />
         </Grid>
       </Grid>
-      <Button onClick={saveChanges} sx={{ color: "black", marginTop: "10px" }}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={saveChanges}
+        sx={{ marginTop: "20px" }}
+      >
         Guardar Cambios
       </Button>
     </Box>

@@ -1,5 +1,4 @@
 import { Button, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom"; // Importa el componente Link de React Router
 
 function Sidebar() {
   const handleBackClick = () => {

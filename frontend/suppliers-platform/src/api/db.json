@@ -1,8 +1,8 @@
 {
   "suppliers": [
     {
-      "id": 1,
-      "name": "Proveedor 1",
+      "id": 2,
+      "name": "Proveedor 2",
       "vat": "FR654321789C",
       "date": "2023-03-25",
       "commercialName": "Proveedor 3 Comercial",
@@ -13,8 +13,8 @@
       "zipCode": "67890"
     },
     {
-      "id": 2,
-      "name": "Proveedor 2",
+      "id": 3,
+      "name": "Proveedor 3",
       "vat": "FR654321789C",
       "date": "2023-03-25",
       "commercialName": "Proveedor 3 Comercial",
@@ -47,17 +47,6 @@
       "state": "UKState",
       "country": "Reino Unido",
       "zipCode": "SW1A 1AA"
-    },
-    {
-      "name": "Manuel Pablo ",
-      "commercialName": "Romero Arroyo",
-      "vat": "3920852395720A",
-      "legalAddress": "Virgen Del Sagrado Corazon",
-      "city": "Sevilla",
-      "state": "Sevilla",
-      "country": "España",
-      "zipCode": "41010",
-      "id": 6
     }
   ]
 }

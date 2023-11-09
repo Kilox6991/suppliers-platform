@@ -128,69 +128,69 @@ function SupplierList() {
           handleDelete={handleDelete}
         />
       ))}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Supplier</DialogTitle>
-        <DialogContent
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            width: "500px",
-          }}
-        >
-          <TextField
-            name="name"
-            label="Name"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            name="commercialName"
-            label="Commercial Name"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField name="vat" label="VAT" onChange={handleChange} fullWidth />
-          <TextField
-            name="legalAddress"
-            label="Legal Address"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            name="city"
-            label="City"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            name="state"
-            label="State"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            name="country"
-            label="Country"
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            name="zipCode"
-            label="Zip Code"
-            onChange={handleChange}
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} sx={{ color: "black" }}>
-            Cancel
-          </Button>
-          <Button onClick={addSupplierAndUpdateList} sx={{ color: "black" }}>
-            Add
-          </Button>
-        </DialogActions>
-      </Dialog>
+       <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>Add New Supplier</DialogTitle>
+      <DialogContent
+        sx={{
+          display: "grid",
+          gap: "20px",
+          width: "400px",
+        }}
+      >
+        <TextField
+          name="name"
+          label="Name"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          name="commercialName"
+          label="Commercial Name"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          name="vat"
+          label="VAT"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          name="legalAddress"
+          label="Legal Address"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField name="city" label="City" onChange={handleChange} fullWidth />
+        <TextField
+          name="state"
+          label="State"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          name="country"
+          label="Country"
+          onChange={handleChange}
+          fullWidth
+        />
+        <TextField
+          name="zipCode"
+          label="Zip Code"
+          onChange={handleChange}
+          fullWidth
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} variant="contained"
+         sx={{ color: "white" }}>
+          Cancel
+        </Button>
+        <Button onClick={addSupplierAndUpdateList} variant="contained" sx={{ color: "white" }}>
+          Add
+        </Button>
+      </DialogActions>
+    </Dialog>
     </Box>
   );
 }
