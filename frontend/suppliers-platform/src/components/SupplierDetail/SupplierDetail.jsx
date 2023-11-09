@@ -104,10 +104,6 @@ function SupplierDetail() {
     }
   };
 
-  if (!selectedSupplier) {
-    return <CircularProgress color="inherit" />
-  }
-
   return (
     <Box
     component={Paper}
