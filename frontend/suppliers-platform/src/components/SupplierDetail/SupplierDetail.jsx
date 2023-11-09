@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, Grid } from "@mui/material";
+import { Box, Typography, TextField, Button, Grid, CircularProgress } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -66,9 +66,6 @@ function SupplierDetail() {
   }, [suppliers, id]);
 
   
-  if (!selectedSupplier) {
-    return <div>Proveedor no encontrado</div>;
-  }
 
   const saveChanges = async () => {
     const url = `http://localhost:5000/suppliers/${id}`;
@@ -106,6 +103,10 @@ function SupplierDetail() {
       console.error("Error al actualizar el proveedor:", error);
     }
   };
+
+  if (!selectedSupplier) {
+    return <CircularProgress color="inherit" />
+  }
 
   return (
     <Box
