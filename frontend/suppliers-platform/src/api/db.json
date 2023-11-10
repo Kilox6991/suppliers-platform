@@ -1,85 +1,51 @@
 {
   "suppliers": [
     {
-      "name": "Proveedor 1",
-      "commercialName": "Proveedor 3 ",
-      "vat": "FR654321789C",
-      "legalAddress": "Rue ",
-      "city": "París",
-      "state": "France",
-      "country": "Francia",
-      "zipCode": "67890",
+      "name": "Suministros Industriales S.A.",
+      "commercialName": "Comercial Suministros",
+      "vat": "ES123456789A",
+      "legalAddress": "Calle Principal 123",
+      "city": "Barcelona",
+      "state": "Cataluña",
+      "country": "España",
+      "zipCode": "08001",
       "id": 1
     },
     {
       "id": 2,
-      "name": "Proveedor 2",
-      "vat": "FR654321789C",
-      "date": "2023-03-25",
-      "commercialName": "Proveedor 3 Comercial",
-      "legalAddress": "Rue de la Rue",
+      "name": "Importadora Parisienne",
+      "vat": "FR987654321B",
+      "date": "2023-08-20",
+      "commercialName": "Parisienne Commerces",
+      "legalAddress": "Rue de la Rue 456",
       "city": "París",
-      "state": "FranceState",
+      "state": "Île-de-France",
       "country": "Francia",
-      "zipCode": "67890"
+      "zipCode": "75001"
     },
     {
       "id": 3,
-      "name": "Proveedor 3",
-      "vat": "FR654321789C",
-      "date": "2023-03-25",
-      "commercialName": "Proveedor 3 Comercial",
-      "legalAddress": "Rue de la Rue",
-      "city": "París",
-      "state": "FranceState",
-      "country": "Francia",
-      "zipCode": "67890"
+      "name": "TechnoGmbH",
+      "vat": "DE654321098C",
+      "date": "2023-08-25",
+      "commercialName": "Techno Solutions",
+      "legalAddress": "Hauptstraße 789",
+      "city": "Berlín",
+      "state": "Berlín",
+      "country": "Alemania",
+      "zipCode": "10115"
     },
     {
       "id": 4,
-      "name": "Proveedor 4",
-      "vat": "FR654321789C",
-      "date": "2023-03-25",
-      "commercialName": "Proveedor 3 Comercial",
-      "legalAddress": "Rue de la Rue",
-      "city": "París",
-      "state": "FranceState",
-      "country": "España",
-      "zipCode": "67890"
-    },
-    {
-      "id": 5,
-      "name": "Proveedor 5",
-      "vat": "UK789123456E",
-      "date": "2023-05-10",
-      "commercialName": "Proveedor 5 Comercial",
-      "legalAddress": "123 Main St",
-      "city": "London",
-      "state": "UKState",
-      "country": "Reino Unido",
-      "zipCode": "SW1A 1AA"
-    },
-    {
-      "name": "Manuel  Pablo",
-      "commercialName": "Romero Arroyo",
-      "vat": "3920852395720A",
-      "legalAddress": "Virgen Del Sagrado Corazon",
-      "city": "Sevilla",
-      "state": "Sevilla",
-      "country": "España",
-      "zipCode": "41010",
-      "id": 6
-    },
-    {
-      "name": "Manuel Pablo",
-      "commercialName": "Romero Arroyo",
-      "vat": "3920852395720A",
-      "legalAddress": "Virgen Del Sagrado Corazon",
-      "city": "Sevilla",
-      "state": "Sevilla",
-      "country": "España",
-      "zipCode": "41010",
-      "id": 7
+      "name": "ItalianStyle S.R.L.",
+      "vat": "IT098765432D",
+      "date": "2023-08-30",
+      "commercialName": "ItalianStyle Commercio",
+      "legalAddress": "Via Principale 987",
+      "city": "Roma",
+      "state": "Lazio",
+      "country": "Italia",
+      "zipCode": "00100"
     }
   ]
 }

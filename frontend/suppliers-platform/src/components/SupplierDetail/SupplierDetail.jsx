@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, Grid, CircularProgress, Paper} from "@mui/material";
+import { Box, Typography, TextField, Button, Grid, Paper, Snackbar } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -46,6 +46,7 @@ function SupplierDetail() {
   const [editedState, setEditedState] = useState("");
   const [editedCountry, setEditedCountry] = useState("");
   const [editedZip, setEditedZip] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
     const foundSupplier = suppliers.find(
@@ -86,6 +87,7 @@ function SupplierDetail() {
     try {
       const data = await api.put(url, options);
       console.log("Proveedor actualizado con éxito:", data);
+      setSnackbarOpen(true);
       setEditedName(data.name);
       setEditedNameCommercial(data.commercialName);
       setEditedVat(data.vat);
@@ -102,6 +104,9 @@ function SupplierDetail() {
     } catch (error) {
       console.error("Error al actualizar el proveedor:", error);
     }
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -221,6 +226,14 @@ function SupplierDetail() {
       >
         Guardar Cambios
       </Button>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message="Changes saved successfully"
+        sx={{marginLeft:"200px"}}
+      />
     </Box>
   );
 }
